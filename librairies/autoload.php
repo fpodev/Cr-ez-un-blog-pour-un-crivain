@@ -1,10 +1,10 @@
 <?php
-function autoload($className)
+function autoload($classname)
 {
-    if (file_exists($file = __dir__. '/' . $className . '.php'))
+    if (file_exists($file = __dir__. '/' . $classname . '.php'))
     {
         require $file;
     }
 }
-spl_autoload_register('auload');
+spl_autoload_register('autoload');
 ?>
