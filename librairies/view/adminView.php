@@ -43,9 +43,23 @@ if(isset($_POST['titre']))
     <script>tinymce.init({selector: '#formulaire', plugins: 'code',})</script>
 </head>
 <body>
-    <p><a href=".">Accueil</a></p>
+    <p><a href=".">Accueil</a></p>    
     <form action="admin.php" method='post'>
-    <textarea id="formulaire"></textarea>
-    </form>    
+    <p>
+    <?php
+    if(isset($message))
+    {
+        echo $message, '<br />';
+    }
+    ?>
+    <?php if (isset($erreurs) && in_array(Billets::TITRE_INVALIDE, $erreurs)) echo 'Le titre esy invalide.<br />'; ?>
+    <label for="titre"> Titre :</label>    
+    <input type="texte" id="titre_formulaire" name="titre" value="<?php if(isset($billets)) echo $billets->titre(); ?>" /><br />
+    <?php if(isset($erreurs)&& in_array(Billets::CONTENU_INVALIDE, $erreurs)) echo 'le contenu est invalide.<br />'; ?>
+    <label for="billet">Billet :</label>
+    <textarea id="formulaire" name="billet"><?php if (isset($billets)) echo $billets->contenu(); ?></textarea><br />
+    <input type="hidden" name="id" value="<?php $billets->id() ?>" />
+    <input type="submit" name="modifier" value="modifier" />
+    </form>        
 </body>
 </html>
