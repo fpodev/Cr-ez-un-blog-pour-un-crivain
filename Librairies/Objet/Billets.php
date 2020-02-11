@@ -1,5 +1,6 @@
-<?php  
-//class qui gére les articles
+<?php 
+namespace App\Objet;
+
 class Billets
 {
     private $erreurs = [];
@@ -8,23 +9,20 @@ class Billets
     private $contenu;
     private $dateAjout;
     private $dateModif;
-
-    //constante pour les erreurs d'éxécution   
+   
     const TITRE_INVALIDE = 1;
     const CONTENU_INVALIDE = 2;
     
-    //constructeur pour assigner les données.
     public function __construct($valeurs=[])
     {
         if (!empty($valeurs))
         {        
             $this->hydrate($valeurs);
         }
-    }
-    //Methode pour assigner les valeurs
+    }    
     public function hydrate($donnees)
     {
-        foreach ($donnees as $attribut => $valeurs)
+        foreach ($donnees as $attribut => $valeur)
         {
             $methode = 'set'.ucfirst($attribut);
 
@@ -33,8 +31,12 @@ class Billets
                 $this->$methode($valeur);
             }
         }
-    }    
-    //Methode pour voir si l'article est valide 
+    }  
+    public function isNew()
+    {
+        return empty($this->id);
+    }  
+    
     public function isValid()
     {
         return !(empty($this->titre) || empty($this->contenu));
@@ -63,7 +65,7 @@ class Billets
         } 
         else
         {
-            $this->setContenu = $contenu;
+            $this->contenu = $contenu;
         }      
     }
     public function setDateAjout($dateAjout)
@@ -93,11 +95,11 @@ class Billets
     }
     public function dateAjout()
     {
-        return $this->dateAjout();
+        return $this->dateAjout;
     }
     public function dateModif()    
     {
-        return $this->dateModif();
-    }
-}
+        return $this->dateModif;
+    }   
+}    
 ?>

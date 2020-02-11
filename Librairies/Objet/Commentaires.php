@@ -1,51 +1,66 @@
 <?php
-//class qui gére les commentaires des visiteurs.
+namespace App\Objet;
+
 class Commentaires
 {
     private $erreur = [];
-    private $id;
-    private $id_billet;
+    private $id;  
     private $pseudo;
     private $mail;
     private $contenu;
+    private $id_billet;
     private $dateAjout;
+    private $signaler;
 
-//constante pour les erreurs d'éxécution
-    const PSEUDO_INVALIDE = 1;
-    const CONTENU_INVALIDE = 2;
-    const MAIL_INVALID = 3;
+    const ID_BILLET_INVALIDE = 1;
+    const PSEUDO_INVALIDE = 2;
+    const CONTENU_INVALIDE = 3;
+    const MAIL_INVALIDE = 4;
+    const SIGNALER_INVALIDE = 5;
 
-    //constructeur pour assigner les données.
     public function __construct($valeurs=[])
     {
         if(!empty($valeurs))
         {
             $this->hydrate($valeurs);   
         }
-    }
-    //Methode pour assigner les valeurs
+    }    
     public function hydrate($donnees)
     {
-        foreach ($donnees as $attribut => $valeurs);
-        {
+        foreach ($donnees as $attribut => $valeur):
+        
             $methode = 'set'.ucfirst($attribut);
 
             if (is_callable([$this, $methode]))
             {
                 $this->$methode($valeur);
             }
-        }
+        endforeach;
     }
-    //methode pour voir si le commentaire est valide
-    public function validate()
+    public function isNew()
     {
-        return !(empty($this->pseudo) || empty($this->contenu) || empty($this->mail));
+        return empty($this->id);
+    }      
+    public function isValid()
+    {
+        return !(empty($this->id_billet) || empty($this->pseudo) || empty($this->contenu) || empty($this->mail));
     }
-    //setters
+    //setters  
     public function setId($id)
     {
         $this->id = (int) $id;
-    }
+    } 
+    public function setId_billet($id_billet)    
+    {
+        if (!is_int($id_billet) || empty($id_billet))
+        {
+            $this->erreurs[] = self::ID_BILLET_INVALIDE;
+        }
+        else
+        {
+            $this->id_billet = (int) $id_billet;
+        }          
+    } 
     public function setPseudo($pseudo)
     {
         if (!is_string($pseudo) || empty($pseudo))
@@ -79,30 +94,55 @@ class Commentaires
             $this->mail = $mail;
         }
     }
-    public function setDateAjout($dateAjout)
+    public function setDateAjout(DateTime $dateAjout)
     {
         $this->dateAjout = $dateAjout;
+    }
+   public function setSignaler()
+    {
+        
+            if (!is_string($signaler) || empty($signaler))
+            {
+                $this->erreurs[] = self::SIGNALER_INVALIDE;
+            }
+            else
+            {
+                $this->signaler = $signaler;
+            }
+         
     }
     //getters
     public function erreurs()
     {
         return $this->erreurs;
-    }
+    }   
     public function id()
     {
         return $this->id;
     }
+    public function id_billet()
+    {
+        return $this->id_billet; 
+    }
     public function pseudo()
     {
-        return $this->pseudo = $pseudo;
+        return $this->pseudo;
     }
     public function contenu()
     {
-        $this->contenu = $contenu;
+        return $this->contenu;
+    }
+    public function mail()
+    {
+        return $this->mail;
     }
     public function dateAjout()
     {
-        $this->dateAjout = $dateAjout;
+        return $this->dateAjout; 
+    }
+    public function signaler()
+    {
+        return $this->signaler;
     }
 }
 ?>
