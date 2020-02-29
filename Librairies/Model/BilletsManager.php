@@ -2,11 +2,10 @@
 namespace App\Model;
 use PDO;
 use App\Objet\Billets;
-;
 
-class BilletsManager
+class BilletsManager 
 {
-    private $db; 
+    private $db;
 
     public function __construct(PDO $db)
     {
@@ -27,23 +26,23 @@ class BilletsManager
     }
     public function count()
     {     
-        return $this->db->query('SELECT COUNT(*) FROM billets')->fetchColumn();                
+        return $this->db->query('SELECT COUNT(*) FROM billets')->fetchColumn();                         
     }
-    public function getList($debut = -1, $limite = -1)
-    {
+    public function getList($debut =-1 , $limite =-1)
+    {      
         $sql = 'SELECT id, titre, contenu, dateAjout, dateModif FROM billets ORDER BY id DESC';
        
-        if ($debut != -1 || $limite != -1)
-        {
+       if ($debut != -1 || $limite != -1)
+       {
             $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
-        }
+       }
         $q = $this->db->query($sql);               
         
-        $listeBillets = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billets');          
+        $billetsList = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billets');          
         
         $q->closeCursor(); 
-
-        return $listeBillets;                 
+        
+        return $billetsList;                 
     }
     public function getUnique($id)
     {        
@@ -76,15 +75,6 @@ class BilletsManager
         {
             throw new RuntimeException('Le billet doit être valide pour être enregistré');
         }
-    }
-   /* public function AddComment(Commentaires $comment)
-    {
-        $q = $this->db->prepare('INSERT INTO commentaires(id_billet, pseudo, mail, dateAjout) VALUES(:id_billet, :pseudo, :mail, NOW())');   
-    }
-    public function getComList($id){
-        
-        $sql = 'SELECT pseudo, contenu, dateAjout, FROM commentaire Where id_billet = ?  ORDER BY id DESC'
-
-    }*/
+    }   
 }    
 ?>
