@@ -1,0 +1,195 @@
+*{
+    margin:0;
+    padding:0;
+} 
+body{
+    margin: 0;          
+}
+body a{
+    text-decoration: none;
+}
+header{    
+    background-color: yellowgreen;
+    text-align: center;
+    text-transform: uppercase;
+    height: 100px; 
+    margin-bottom: 14px; 
+}
+header h1{
+    margin-top: 0px; 
+    font-size: 46px;  
+}
+h2{
+    text-transform: uppercase;
+}
+.page{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    background-image: url('http://recueil-de-png.r.e.pic.centerblog.net/ff1adaff.png'); 
+} 
+.contenaire{   
+    flex:1;
+}  
+.billetList{         
+    margin-left: auto;
+    margin-right: auto; 
+    background-color: aqua;   
+    width: 70%; 
+    margin-bottom: 14px;
+    padding: 10px;    
+    border-radius: 5px;   
+    padding-bottom: 30px;    
+}
+.navBar{
+    text-align: center;
+    margin-bottom: 14px;   
+}
+.contenu, .date{
+    margin-top: 10px;
+}
+.comTitre{    
+    margin-left: 330px; 
+    font-weight: bold;   
+}
+.pseudo{
+    font-weight: bold;
+}
+.billet, .commentaire{    
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    padding:5px;
+}
+.billet{
+    background-color: aqua; 
+    width: 70%;        
+}
+#billet textarea{
+    width: 238px;
+    height: 90px;
+}
+.commentForm{ 
+    text-align: center;   
+    margin: 10px auto;  
+    border: 2px solid blue;
+    border-radius: 20px;
+    width: 305px;
+}
+#billet form{
+    margin-top:10px;
+}
+.commentaire{
+    background-color: aquamarine; 
+    margin-top: 5px; 
+    width: 60%;  
+}
+.textComment{
+    margin:5px 0 0 25px;    
+}
+.textSignal{
+    margin-left: 35px ;
+    color: red;
+    font-weight: bold;
+}
+footer{         
+    background-color: yellowgreen;      
+    bottom: 0;
+    width: 100%;  
+    padding: 10px 0px 10px 0px;       
+}
+table, td , th{
+    border: 1px solid black;
+    padding: 5px;
+}
+table{    
+    margin: 15px auto;
+    text-align: center;
+    border-collapse: collapse;
+}
+td{
+    padding: 3px;    
+}
+.formAdmin {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.delete, .valide, .btnModif, .btnAdmin, .btnForm{
+    padding: 5px;
+    font-weight: bold;
+}
+.btnAdmin a, .btnForm[type="submit"]{
+    color: white;
+}
+.delete{        
+    background: red;  
+}
+.valide{
+    background: green;    
+}
+.btnModif{
+    background: yellow;   
+}
+.btnAdmin, .btnForm{
+ background: gray; 
+ margin: 5px 0 0 5px;    
+}
+.listeAdmin{
+    text-align: center;
+    font-size: 25px;
+}
+#loginPage{
+    text-align: center;
+    padding:15px;
+    text-transform: uppercase;
+}
+.login{
+    border: 2px solid blue;
+    width: 20%;
+    border-radius: 20px;
+}
+.login,input{
+    margin:15px auto;
+}
+#erreur{
+    text-align: center;
+    display: flex;
+    flex-direction: column;             
+}
+#erreur button{    
+    width:100px;
+    margin: auto;
+}
+#erreur p{
+    padding: 20px;
+    font-size: 40px;
+}
+.titreAdmin{
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: yellowgreen;
+}
+@media screen and (max-width:982px){
+    header{        
+        height: 148px;  
+    }
+}
+@media screen and (max-width: 562px){    
+    .commentForm{
+        width:250px;
+    }  
+} 
+@media screen and (max-width: 475px){    
+    header{
+        height: 130px;
+    }
+    header h1{
+        font-size: 35px;
+    }
+}
+
+
+
+   
+    
