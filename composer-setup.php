@@ -131,7 +131,6 @@ function setUseAnsi($argv)
         );
     }
 }
-
 /**
  * Returns the value of a command-line option
  *
