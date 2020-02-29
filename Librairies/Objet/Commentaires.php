@@ -108,8 +108,7 @@ class Commentaires
             else
             {
                 $this->signaler = $signaler;
-            }
-         
+            }         
     }
     //getters
     public function erreurs()
