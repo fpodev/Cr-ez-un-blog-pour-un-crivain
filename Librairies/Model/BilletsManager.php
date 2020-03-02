@@ -28,7 +28,7 @@ class BilletsManager
     {     
         return $this->db->query('SELECT COUNT(*) FROM billets')->fetchColumn();                         
     }
-    public function getList($debut =-1 , $limite =-1)
+    public function getList($debut =-1 , $limite =-1) 
     {      
         $sql = 'SELECT id, titre, contenu, dateAjout, dateModif FROM billets ORDER BY id DESC';
        
