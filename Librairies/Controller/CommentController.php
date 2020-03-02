@@ -21,8 +21,7 @@ class CommentController{
       );                         
         if($commentaires->isValid())
         {     
-          $manager->save($commentaires) ;  
-          echo 'Commentaire bien ajouté' ;                    
+          $manager->save($commentaires) ;                               
         }
         else
         {
