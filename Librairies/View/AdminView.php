@@ -9,14 +9,7 @@ ob_start();
        <div class="formAdmin">  
            <form action="index.php" method="post">
         <p>'        
-        ?>   
-        <?php                
-        if (isset($message))
-        {
-          echo $message, '<br />';
-        }
-        ?>      
-                      
+        ?>                               
                 <?php if(isset($erreurs) && in_array(Billets::TITRE_INVALIDE, $erreurs)) echo 'Le titre est invalide.<br />'; ?>
                 Titre : <input type="text" name="titre" value="<?php if (isset($billet)) echo $billet->titre(); ?>" /><br />
                 

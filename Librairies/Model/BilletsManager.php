@@ -1,7 +1,7 @@
 <?php  
 namespace App\Model;
 use PDO;
-use App\Objet\Billets;
+use App\Objet\Billet;
 
 class BilletsManager 
 {
@@ -11,12 +11,12 @@ class BilletsManager
     {
        $this->db = $db;
     }
-    public function add(Billets $billets)
+    public function add(Billet $billet)
     {
     $q = $this->db->prepare('INSERT INTO billets(titre, contenu, dateAjout, dateModif) VALUES(:titre, :contenu, NOW(), NOW())');
     
-    $q->bindValue(':titre', $billets->titre());
-    $q->bindValue(':contenu', $billets->contenu());
+    $q->bindValue(':titre', $billet->titre());
+    $q->bindValue(':contenu', $billet->contenu());
     
     $q->execute();    
     }
@@ -38,7 +38,7 @@ class BilletsManager
        }
         $q = $this->db->query($sql);               
         
-        $billetsList = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billets');          
+        $billetsList = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billet');          
         
         $q->closeCursor(); 
         
@@ -49,27 +49,29 @@ class BilletsManager
         $q = $this->db->prepare('SELECT id, titre, contenu, dateAjout, dateModif FROM billets WHERE id =:id');
 
         $q->bindValue(':id', (int) $id, PDO::PARAM_INT);
-        $q->execute();      
+        $q->execute();   
+        
+        $q->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billet');
 
-        $billets = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billets');         
+        $billet = $q->fetch();         
 
-        return $billets;
+        return $billet;
     }
-    protected function update(Billets $billets)
+    protected function update(Billet $billet)
     {
         $q = $this->db->prepare('UPDATE billets SET titre = :titre, contenu = :contenu, dateModif = NOW() WHERE id = :id');
 
-        $q->bindValue(':titre', $billets->titre());
-        $q->bindValue(':contenu', $billets->contenu());
-        $q->bindValue(':id', $billets->id(), PDO::PARAM_INT);
+        $q->bindValue(':titre', $billet->titre());
+        $q->bindValue(':contenu', $billet->contenu());
+        $q->bindValue(':id', $billet->id(), PDO::PARAM_INT);
 
         $q->execute();
     }
-    public function save(Billets $billets)
+    public function save(Billet $billet)
     {
-        if ($billets->isValid())
+        if ($billet->isValid())
         {   
-            $billets->isNew() ? $this->add($billets) : $this->update($billets);
+            $billet->isNew() ? $this->add($billet) : $this->update($billet);
         }
         else
         {

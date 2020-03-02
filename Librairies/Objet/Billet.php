@@ -1,7 +1,7 @@
 <?php 
 namespace App\Objet;
 
-class Billet 
+class Billet
 {
     private $erreurs = [];
     private $id;    
