@@ -26,7 +26,7 @@ h2{
     min-height: 100vh;
     display: flex;
     flex-direction: column; 
-    background-image: url('http://recueil-de-png.r.e.pic.centerblog.net/ff1adaff.png'); 
+    background-image: url('../img/flocons.png'); 
 } 
 .contenaire{   
     flex:1;
@@ -49,7 +49,7 @@ h2{
     margin-top: 10px;
 }
 .comTitre{    
-    margin-left: 330px; 
+    margin-left: 20%; 
     font-weight: bold;   
 }
 .pseudo{
