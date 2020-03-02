@@ -24,7 +24,7 @@ class CommentController{
           $manager->save($commentaires) ;  
           echo 'Commentaire bien ajouté' ;                    
         }
-        else
+        else 
         {
           $erreurs = $commentaires->erreurs();
         }              
