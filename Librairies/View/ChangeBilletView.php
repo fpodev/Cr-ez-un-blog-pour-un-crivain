@@ -8,30 +8,22 @@ ob_start();
               <div class="formAdmin">  
               <form action="index.php" method="post">
              <p>'
-        ?>
-        <?php
-        if (isset($message))
-        {
-          echo $message, '<br />';
-        }
-                
-        foreach($billetUnique as $billets):
-                
-                if(isset($erreurs) && in_array(Billets::TITRE_INVALIDE, $erreurs)) echo 'Le titre est invalide.<br />'; ?>
-                Titre : <input type="text" name="titre" value="<?php if (isset($billets)) echo $billets->titre(); ?>" /><br />
+        ?>                                      
+               <?php if(isset($erreurs) && in_array(Billets::TITRE_INVALIDE, $erreurs)) echo 'Le titre est invalide.<br />'; ?>
+                Titre : <input type="text" name="titre" value="<?php if (isset($billet)) echo $billet->titre(); ?>" /><br />
                 
                 <?php if (isset($erreurs) && in_array(Billets::CONTENU_INVALIDE, $erreurs)) echo 'Le contenu est invalide.<br />'; ?>
-                Contenu :<br /><textarea id="formulaire" type="text" name="contenu"><?php if (isset($billets)) echo $billets->contenu(); ?></textarea><br />
+                Contenu :<br /><textarea id="formulaire" type="text" name="contenu"><?php if (isset($billet)) echo $billet->contenu(); ?></textarea><br />
         <?php
-        if(isset($billets) && !$billets->isNew())
+        if(isset($billet) && !$billet->isNew())
         {
         ?>
-                <input type="hidden" name="id" value="<?= $billets->id() ?>" />
+                <input type="hidden" name="id" value="<?= $billet->id() ?>" />
                 <input class="btnForm" type="submit" value="Modifier" name="postModifier" />
                 <input class="btnForm" type="submit" value="Annuler" name="annuler"/>        
         <?php
         }
-        endforeach;
+       
         echo ' </p>
          </form>
         </div>';
