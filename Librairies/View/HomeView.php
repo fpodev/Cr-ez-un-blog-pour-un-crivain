@@ -26,7 +26,7 @@
          {
           echo '<p><em>Modifier le', date('d/m/y à H:i:s', strtotime($billet->dateModif())), '</em></small></p>';
          }
-         else
+         else 
          {
            echo '<p><em>Ajouter le ', date('d/m/y à H:i:s', strtotime($billet->dateAjout())), '</em></small></p>';
          } 

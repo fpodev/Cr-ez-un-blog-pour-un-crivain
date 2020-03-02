@@ -3,7 +3,7 @@ $titre = 'Article';
 require 'Librairies/Template/Head.php';
 ?>
 <body id="billet"> 
-  <div class='page'>
+  <div class='page'> 
     <div class='contenaire'>
 <?php require 'Librairies/Template/Header.php';
 

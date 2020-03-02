@@ -1,5 +1,5 @@
 <?php
-$titre = 'administration';
+$titre = 'administration'; 
 require 'Librairies/Template/Head.php';
 
 ob_start();
