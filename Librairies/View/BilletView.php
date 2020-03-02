@@ -1,13 +1,13 @@
 <?php
 $titre = 'Article';
 require 'Librairies/Template/Head.php';
+
 ?>
 <body id="billet"> 
   <div class='page'>
     <div class='contenaire'>
-<?php require 'Librairies/Template/Header.php';
-
- foreach($billetId as $billet):
+<?php require 'Librairies/Template/Header.php'; 
+  
   echo '<article class=billet>
         <h2>', $billet->titre(), '</h2>', "\n",
         '<p class="contenu">', nl2br($billet->contenu()), '</p>', "\n";
@@ -21,7 +21,7 @@ require 'Librairies/Template/Head.php';
     echo  '<p class="date"><em>Modifiée le ', date('d/m/y à H:i:s', strtotime($billet->dateModif())), '</em></small></p>';
   }
   echo '</article>';
- endforeach; 
+
 ?>  
 <?php 
   if($commentList == true)
