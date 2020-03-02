@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 use PDO;
-use App\Objet\Billets;
+use App\Objet\Billet;
 use App\Objet\Connect;
 use App\Model\CommentManager;
 use App\Model\BilletsManager;
@@ -40,9 +40,9 @@ class BilletsController{
               $manager = new BilletsManager($db); 
               $CommentManager = new CommentManager($db); 
               $value = $_GET['billetUnique'];                     
-              $billetId = $manager->getUnique($value);                                                       
+              $billet = $manager->getUnique($value);                                                       
               $commentList = $CommentManager->getList($value);                             
-                     if(preg_match("#[0-9]#" , $value) && !empty($billetId))
+                     if(preg_match("#[0-9]#" , $value) && !empty($billet))
                      {
                             include('Librairies/View/BilletView.php'); 
                      }
@@ -72,7 +72,7 @@ class BilletsController{
 
               if(preg_match("#[0-9]#" , $value))
               {                                   
-                     $billetUnique = $manager->getUnique($value);                                                                           
+                     $billet = $manager->getUnique($value);                                                                           
                      $billetCount = $manager->count();                              
                      $billetList = $manager->getList(); 
 
@@ -87,11 +87,11 @@ class BilletsController{
               }                                                                                        
        } 
        /*fonction qui permet de valider un nouveau billet
-        * ou modifier billet existant*/ 
+        *ou modifier billet existant*/ 
        public function save(){            
               $db = Connect::getPDO(); 
               $manager = new BilletsManager($db);
-              $billets = new Billets(             
+              $billet = new Billet(             
               [         
                      'titre' => $_POST['titre'],
                      'contenu' => $_POST['contenu']
@@ -99,17 +99,17 @@ class BilletsController{
               );    
                  if(isset($_POST['id']))
                  {
-                   $billets->setId($_POST['id']);
+                   $billet->setId($_POST['id']);
                  }      
-                 if($billets->isValid())
+                 if($billet->isValid())
                  {                  
-                   $manager->save($billets);
+                   $manager->save($billet);
            
-                   $message = $billets->isNew() ? 'Le billet a bien été ajoutée !' : 'Le billet a bien été modifié !';
+                   $billet->isNew();                
                  }
                  else
                  {
-                   $erreurs = $billets->erreurs();
+                   $erreurs = $billet->erreurs();
               } 
               $this->adminList();
                               
