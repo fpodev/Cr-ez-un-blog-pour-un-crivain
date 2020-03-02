@@ -9,7 +9,7 @@ class Commentaires
     private $mail;
     private $contenu;
     private $id_billet;
-    private $dateAjout;
+    private $dateAjout; 
     private $signaler;
 
     const ID_BILLET_INVALIDE = 1;

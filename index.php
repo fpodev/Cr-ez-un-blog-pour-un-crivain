@@ -32,7 +32,7 @@ require 'vendor/autoload.php';
       $connexion = new LoginController();
       $connexion->connexion();
     }
-    //commande la page de changement du mot de passe
+    //commande la page de changement du mot de passe 
     elseif(isset($_GET['changePass']))
     {
       $connexion = new LoginController();

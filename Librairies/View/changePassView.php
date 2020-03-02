@@ -21,4 +21,4 @@ require 'Librairies/Template/Head.php';
     </div>             
         <a href="index.php">Retour à l'accueil</a>       
 </body>
-</html>
+</html> 

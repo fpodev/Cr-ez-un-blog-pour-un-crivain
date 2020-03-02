@@ -53,7 +53,7 @@ class BilletsManager
         
         $q->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billet');
 
-        $billet = $q->fetch();         
+        $billet = $q->fetch();          
 
         return $billet;
     }

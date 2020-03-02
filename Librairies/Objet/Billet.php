@@ -8,7 +8,7 @@ class Billet
     private $titre;
     private $contenu;
     private $dateAjout;
-    private $dateModif;
+    private $dateModif; 
    
     const TITRE_INVALIDE = 1;
     const CONTENU_INVALIDE = 2;

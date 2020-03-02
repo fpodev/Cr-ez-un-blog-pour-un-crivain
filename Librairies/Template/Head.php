@@ -6,4 +6,4 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?= $titre ?></title>  
   <link rel="stylesheet" type="text/css" href="style/style.css">
-  </head>
+  </head> 

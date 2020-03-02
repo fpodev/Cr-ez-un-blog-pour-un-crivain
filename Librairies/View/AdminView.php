@@ -18,7 +18,7 @@ ob_start();
         
                 <input class="btnForm" type="submit" name="postBillet" value="Ajouter"/>
                 
-        <?php
+        <?php 
         
         echo ' </p>
         </form>

@@ -16,7 +16,7 @@ use App\Modele\BilletsManager;
                 $date2 = date('d/m/y à H:i:s', strtotime($billets->dateModif()));      
                 echo '<tr><td>',$billets->titre(), '</td><td>', $date1, '</td><td>', ($date1 == $date2 ? '-' : $date2),
                     '</td><td><button class="btnModif"><a href="index.php?modifierBillet='. $billets->id(),  '">Modifier</a></button> | <button class="delete"><a href="index.php?supprimerBillet='. $billets->id(), '">Supprimer</a></button></td></tr>', "\n";
-            }            
+            }             
     ?>   
         </table> 
 

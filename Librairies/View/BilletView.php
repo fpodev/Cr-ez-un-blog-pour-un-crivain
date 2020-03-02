@@ -23,7 +23,7 @@ require 'Librairies/Template/Head.php';
   echo '</article>';
 
 ?>  
-<?php 
+<?php  
   if($commentList == true)
   {
   echo '<p class="comTitre">Commentaire(s)</p>';

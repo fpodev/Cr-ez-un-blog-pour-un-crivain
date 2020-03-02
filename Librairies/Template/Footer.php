@@ -8,4 +8,4 @@
  <div> 
  <p>Copyright© fpodev, projet openclass rooms - <?=$date= date('Y')?></p>
  </div> 
-</footer>
+</footer> 

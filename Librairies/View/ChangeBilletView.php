@@ -22,7 +22,7 @@ ob_start();
                 <input class="btnForm" type="submit" value="Modifier" name="postModifier" />
                 <input class="btnForm" type="submit" value="Annuler" name="annuler"/>        
         <?php
-        }
+        } 
        
         echo ' </p>
          </form>

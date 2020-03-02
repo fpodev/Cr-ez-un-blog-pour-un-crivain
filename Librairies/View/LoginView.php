@@ -20,4 +20,4 @@ require 'Librairies/Template/Head.php';
         <p>Espace réserver</p> 
         <a href="index.php">Retour à l'accueil</a>       
 </body>
-</html>
+</html> 
