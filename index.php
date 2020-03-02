@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors','On');
 use App\Controller\BilletsController;
 use App\Controller\CommentController;
 use App\Controller\LoginController;
