@@ -34,7 +34,7 @@ class BilletsController{
               
               include("Librairies/View/HomeView.php"); 
        }
-       //fonction qui contrôle si $value est un nombre, si il existe dans la bdd et affiche le billet.  
+       //fonction qui contrôle si $value est un nombre, si il existe dans la bdd, et affiche le billet.  
        public function unique(){ 
               $db = Connect::getPDO();    
               $manager = new BilletsManager($db); 
@@ -53,7 +53,7 @@ class BilletsController{
        }
        /*fonction qui affiche la liste et le nombre de billets dans la page admistration, 
         *affiche les commentaires signalés */
-       public function adminList(){
+       public function adminList(){              
               $db = Connect::getPDO();               
               $manager = new BilletsManager($db);       
               $billetList = $manager->getList();                 
@@ -62,24 +62,35 @@ class BilletsController{
               $CommentManager = new CommentManager($db);                      
               $signalList = $CommentManager->getSignalList(); 
 
-              include('Librairies/View/AdminView.php');                     
+              include('Librairies/View/AdminView.php');                   
        } 
+       public function communAdmin(){
+              $db = Connect::getPDO();               
+              $manager = new BilletsManager($db);       
+              $billetList = $manager->getList();                 
+              $billetCount = $manager->count(); 
+             
+              $CommentManager = new CommentManager($db);                      
+              $signalList = $CommentManager->getSignalList();           
+
+       }
        // fonction qui affiche un billet à modifier dans la page administration         
        public function adminChange(){       
               $db = Connect::getPDO();  
               $manager = new BilletsManager($db);
               $value = $_GET['modifierBillet'];
 
-              if(preg_match("#[0-9]#" , $value))
+              if(preg_match("#[0-9]#" , $value)) 
               {                                   
-                     $billet = $manager->getUnique($value);                                                                           
+                     $billet = $manager->getUnique($value);                                                                                                            
                      $billetCount = $manager->count();                              
                      $billetList = $manager->getList(); 
-
+                    
                      $CommentManager = new CommentManager($db);                      
                      $signalList = $CommentManager->getSignalList(); 
               
-                     include('Librairies/View/ChangeBilletView.php');  
+                     include('Librairies/View/AdminView.php');  
+                     
               }
               else
               {
