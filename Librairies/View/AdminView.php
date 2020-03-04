@@ -56,7 +56,7 @@ require 'Librairies/Template/Head.php';
 <?php
     foreach($signalList as $comment){               
             echo '<tr><td><button><a href="index.php?modifierBillet='. $comment->id_billet(), '"</a>'. $comment->id_billet().'</button></td><td>', $comment->pseudo(), '</td><td>', $comment->mail(),
-                '</td><td>',$comment->contenu(),'</td><td><button class="valide"><a href="index.php?validerComment='. $comment->id(),  '">Valider</a></button> |<button class="delete"><a href="index.php?deleteComment='. $comment->id(), '">Supprimer</a></button></td></tr>', "\n";
+                '</td><td>',$comment->contenu(),'</td><td><button class="valide"><a href="index.php?validerComment='. $comment->id(),  '">Valider</a></button> <button class="delete"><a href="index.php?deleteComment='. $comment->id(), '">Supprimer</a></button></td></tr>', "\n";
         }            
 ?>   
     </table>  
