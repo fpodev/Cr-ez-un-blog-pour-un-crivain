@@ -79,6 +79,9 @@ h2{
 #billet form{
     margin-top:10px;
 }
+.listeCom{
+    width: 70%;
+}
 .commentaire{
     background-color: aquamarine; 
     margin-top: 5px; 
