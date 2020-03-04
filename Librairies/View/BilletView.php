@@ -58,7 +58,7 @@ require 'Librairies/Template/Head.php';
                 <textarea type='text' name="contenu" require ></textarea> <br>
 
                 <input type='hidden' name='id_billet' value='<?=$billet->id()?>'/>                     
-                <input type="submit" name="action" value="Envoyer"/>               
+                <input type="submit" name="envoyer" value="Envoyer"/>               
         </form> 
       </div>
   </div> 
