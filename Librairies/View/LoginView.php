@@ -13,7 +13,7 @@ require 'Librairies/Template/Head.php';
             <input type="text" name='identifiant'/></br>
             <label for="pass">Mot de passe:</label></br>
             <input type="password" name="pass" /></br>
-            <input type="submit" name="connecter" value="Se connecter" />
+            <input type="submit" name="connexion" value="connexion" />
             </p>
         </form>
     </div>      
