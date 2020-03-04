@@ -52,10 +52,10 @@ require 'Librairies/Template/Head.php';
         <p class="listeAdmin">Liste des commentaires signalés:</p>
 
     <table class='listeCom'>    
-    <tr><th>Id_Billet</th><th>Pseudo</th><th>Mail</th><th>Contenu</th><th>Action</th></tr>
+    <tr><th class="idBillet">Id_Billet</th><th class="pseudo">Pseudo</th><th>Mail</th><th>Contenu</th><th>Action</th></tr>
 <?php
     foreach($signalList as $comment){               
-            echo '<tr><td><button><a href="index.php?modifierBillet='. $comment->id_billet(), '"</a>'. $comment->id_billet().'</button></td><td>', $comment->pseudo(), '</td><td>', $comment->mail(),
+            echo '<tr><td class="idBillet"><button><a href="index.php?modifierBillet='. $comment->id_billet(), '"</a>'. $comment->id_billet().'</button></td><td class="pseudo">', $comment->pseudo(), '</td><td>', $comment->mail(),
                 '</td><td>',$comment->contenu(),'</td><td><button class="valide"><a href="index.php?validerComment='. $comment->id(),  '">Valider</a></button> <button class="delete"><a href="index.php?deleteComment='. $comment->id(), '">Supprimer</a></button></td></tr>', "\n";
         }            
 ?>   
