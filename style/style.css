@@ -149,7 +149,7 @@ td{
 }
 .login{
     border: 2px solid blue;
-    width: 20%;
+    width: 255px;
     border-radius: 20px;
 }
 .login,input{
@@ -182,6 +182,9 @@ td{
     .commentForm{
         width:250px;
     }  
+    .idBillet, .pseudo{
+        display: none;
+    }
 } 
 @media screen and (max-width: 475px){    
     header{
