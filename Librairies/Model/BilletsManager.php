@@ -36,9 +36,11 @@ class BilletsManager
        {
             $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
        }
-        $q = $this->db->query($sql);               
+        $q = $this->db->query($sql);  
         
-        $billetsList = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billet');          
+        $q->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billet');
+        
+        $billetsList = $q->fetchAll();          
         
         $q->closeCursor(); 
         
