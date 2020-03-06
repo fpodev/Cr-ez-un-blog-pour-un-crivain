@@ -48,7 +48,21 @@ require 'Librairies/Template/Head.php';
         }             
 ?>   
     </table> 
-
+    <div class='navBar'>
+      <?php if($pageCourante == 1)
+            { 
+               echo 'page ',$pageCourante,'/', $nbPages , ' <a href="?pages=', $pageCourante + 1 , '">suivante</a>';
+            }                           
+            elseif($pageCourante == $nbPages)
+            {
+               echo '<a href="?pages=', $pageCourante - 1 ,'">précédente</a> page ', $pageCourante,'/', $nbPages ;
+            }
+            else
+            {              
+               echo '<a href="?pages=', $pageCourante - 1 ,'">précédente</a> page ',  $pageCourante,'/', $nbPages , ' <a href="?pages=', $pageCourante + 1 ,'">suivante</a>';
+            }        
+      echo '</div>';
+        ?>
         <p class="listeAdmin">Liste des commentaires signalés:</p>
 
     <table class='listeCom'>    
