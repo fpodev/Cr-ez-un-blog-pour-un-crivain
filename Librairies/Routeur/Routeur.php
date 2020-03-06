@@ -14,20 +14,20 @@ Class Routeur{
             /*commande la connextion à l'espace administration
             *par lien pied de page ou retour à la page administration
             *par le bouton annuler de la page modification*/
-            if(isset($_GET['connexion']) || isset($_POST['annuler']))
+            if(isset($_GET['connexion']) || isset($_POST['annuler']) || isset($_GET['pages']))
             { 
               //si une session existe ce connect directement
               if(!empty($_SESSION['admin']) && $_SESSION['admin'] === $_COOKIE)
               {
                 $vueAdmin = new Billetscontroller();
-                $vueAdmin->adminList();        
+                $vueAdmin->adminList();                     
               }
               //si session non existante, detruit la session dans le cache et renvoie sur la page pour se connecter
               else{ 
                 session_destroy();                 
                 include ('Librairies/View/LoginView.php');   
               }
-            }
+            }           
             //commande la connexion à la page administation
             elseif(isset($_POST['connexion']))
             {
