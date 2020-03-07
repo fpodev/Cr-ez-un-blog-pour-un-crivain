@@ -30,7 +30,7 @@ class BilletsManager
     }
     public function getList($debut =-1 , $limite =-1) 
     {      
-        $sql = 'SELECT id, titre, contenu, dateAjout, dateModif FROM billets ORDER BY id DESC';
+        $sql = 'SELECT * FROM billets ORDER BY id DESC';
        
        if ($debut != -1 || $limite != -1)
        {
@@ -48,7 +48,7 @@ class BilletsManager
     }
     public function getUnique($id)
     {        
-        $q = $this->db->prepare('SELECT id, titre, contenu, dateAjout, dateModif FROM billets WHERE id =:id');
+        $q = $this->db->prepare('SELECT * FROM billets WHERE id =:id');
 
         $q->bindValue(':id', (int) $id, PDO::PARAM_INT);
         $q->execute();   
