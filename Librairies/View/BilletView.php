@@ -1,4 +1,5 @@
 <?php
+
 $titre = 'Article';
 require 'Librairies/Template/Head.php';
 
@@ -46,16 +47,16 @@ require 'Librairies/Template/Head.php';
 ?>
       <div class="commentForm">  
         <p> Ajouter un Commentaire</p>
+
         <form action='index.php' method="post"> 
-              
                 <label for="pseudo">Pseudo :</label> <br>
-                <input type="text" name="pseudo" require /> <br>
+                <input type="text" name="pseudo" required /> <br>
               
                 <label for="mail">Votre adresse mail :</label> <br>
-                <input type="email" name="mail" require />  <br>
+                <input type="email" name="mail" required />  <br>
               
                 <label for="contenu">Votre commentaire :</label> <br>
-                <textarea type='text' name="contenu" require ></textarea> <br>
+                <textarea type='text' name="contenu" required ></textarea> <br>
 
                 <input type='hidden' name='id_billet' value='<?=$billet->id()?>'/>                     
                 <input type="submit" name="envoyer" value="Envoyer"/>               
