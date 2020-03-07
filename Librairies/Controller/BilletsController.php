@@ -9,7 +9,7 @@ use App\Model\BilletsManager;
 class BilletsController{ 
        
               
-        //fonction qui affiche les 5 billets et la pagination (page accueil) 
+        //fonction qui affiche les 5 derniers billets
        public function list(){    
 
               $db = Connect::getPDO();            
@@ -66,8 +66,7 @@ class BilletsController{
              $db = Connect::getPDO();               
              $manager = new BilletsManager($db);  
              $CommentManager = new CommentManager($db);
-
-          //   $billetList = $manager->getList();                 
+                       
              $billetCount = $manager->count();                                             
              $signalList = $CommentManager->getSignalList(); 
              $billetsPage = 10;
@@ -105,12 +104,9 @@ class BilletsController{
                       
                      if(preg_match("#[0-9]#" , $value)) 
                      {                                   
-                            $billet = $manager->getUnique($value);                                                                                                                                         
-                            $billetCount =  $manager->count();                              
-                            $billetList = $manager->getList();                                
-                               
-
-                            include('Librairies/View/AdminChange.php');                      
+                            $billet = $manager->getUnique($value);                                                                                                                               
+                                                                                                                              
+                           include('Librairies/View/AdminChange.php');                      
                      }
                      else
                      {
