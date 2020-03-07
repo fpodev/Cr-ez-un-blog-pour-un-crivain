@@ -23,7 +23,8 @@ require 'Librairies/Template/Head.php';
         ?>
                 <input type="hidden" name="id" value="<?= $billet->id() ?>" />
                 <input class="btnForm" type="submit" value="Valider" name="postModifier" />
-                <input class="btnForm" type="submit" value="Annuler" name="annuler"/>        
+                <input class="btnForm" type="submit" value="Annuler" name="annuler"/> 
+                <input class="btnForm" type="submit" value="Supprimer" name="supprimer"/>                      
         <?php
         }
         else
