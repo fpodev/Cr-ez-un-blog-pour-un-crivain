@@ -50,7 +50,8 @@ Class Routeur{
             elseif(isset($_GET['modifierBillet']))
             {        
               $modif = new Billetscontroller();
-              $modif->adminChange();                                        
+              $modif->adminChange(); 
+                                                    
             }
             //commande la suppression d'un billet 
             elseif(isset($_GET['supprimerBillet']))
