@@ -13,7 +13,7 @@ Class Routeur{
 
             /*commande la connextion à l'espace administration
             *par lien pied de page ou retour à la page administration
-            *par le bouton annuler de la page modification*/
+            *par le bouton annuler de la page modification et permet la pagination*/
             if(isset($_GET['connexion']) || isset($_POST['annuler']) || isset($_GET['pages']))
             { 
               //si une session existe ce connect directement
@@ -50,11 +50,10 @@ Class Routeur{
             elseif(isset($_GET['modifierBillet']))
             {        
               $modif = new Billetscontroller();
-              $modif->adminChange(); 
-                                                    
+              $modif->adminChange();                                                     
             }
             //commande la suppression d'un billet 
-            elseif(isset($_GET['supprimerBillet']))
+            elseif(isset($_GET['supprimerBillet']) || isset($_POST['supprimer']))
             {
               $delete = new Billetscontroller();
               $delete->delete();               
@@ -102,9 +101,7 @@ Class Routeur{
             {
               $page = new Billetscontroller();
               $page->list();
-            }
-        //-----------------------fin partie public---------------------  
-
+            }         
             //commande l'affichage de la page d'accueil par défaut
             else 
             {           
