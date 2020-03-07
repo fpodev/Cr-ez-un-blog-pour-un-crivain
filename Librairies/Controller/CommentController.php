@@ -25,16 +25,18 @@ class CommentController{
           }
           else  
           {
-            $erreurs = $commentaires->erreurs();
-          }              
-        $billet = $commentaires->id_billet();   
-        
+           require 'Librairies/View/Erreur404.php';
+          } 
+
+        $billet = $commentaires->id_billet();  
+                
         header("Location: index.php?billetUnique=$billet");              
     }
 
     public function signaler(){
         $db = Connect::getPDO(); 
-        $manager = new CommentManager($db);  
+        $manager = new CommentManager($db); 
+
         $signal = $manager->signaler((int)$_GET['signalComment']);         
         $billet = (int)$_GET['idBillet'];
 
