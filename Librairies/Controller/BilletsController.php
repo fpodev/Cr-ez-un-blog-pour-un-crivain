@@ -9,7 +9,7 @@ use App\Model\BilletsManager;
 class BilletsController{        
               
         //fonction qui affiche les 5 derniers billets
-       public function list(){    
+       public function list(){   
 
               $db = Connect::getPDO();            
               $manager = new BilletsManager($db);
@@ -17,7 +17,6 @@ class BilletsController{
               $nbBillets = $manager->count();              
               $billetsPage = 5;
               $nbPages = ceil($nbBillets/$billetsPage); 
-
                      if(isset($_GET['page']))  
                      {
                             $pageCourante=(int)($_GET['page']);
@@ -43,20 +42,28 @@ class BilletsController{
 
               $db = Connect::getPDO();    
               $manager = new BilletsManager($db); 
-              $CommentManager = new CommentManager($db);
-              
-              $value = $_GET['billetUnique'];                     
-              $billet = $manager->getUnique($value);                                                       
+              $CommentManager = new CommentManager($db);   
+
+              $value = $_GET['billetUnique'];                                                                                    
               $commentList = $CommentManager->getList($value);  
 
-                     if(preg_match("#[0-9]#" , $value) && !empty($billet))
+                     if(preg_match("#[0-9]#" , $value))
                      {
-                            include('Librairies/View/BilletView.php'); 
-                     }
+                            $billet = $manager->getUnique($value);
+
+                            if(!empty($billet))                                  
+                            {   
+                                   include ('Librairies/View/BilletView.php');
+                            } 
+                            else
+                            {
+                                   require ('Librairies/View/Erreur404.php');          
+                            } 
+                     }                                  
                      else
                      {
-                            include('Librairies/View/Erreur404.php');
-                     }                      
+                            require 'Librairies/View/Erreur404.php';
+                     }                                    
        }
        /*fonction qui affiche la liste et le nombre de billets dans la page admistration, 
         *affiche les commentaires signalés */
