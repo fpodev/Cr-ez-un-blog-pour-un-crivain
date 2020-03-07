@@ -6,8 +6,7 @@ use App\Objet\Connect;
 use App\Model\CommentManager;
 use App\Model\BilletsManager;
 
-class BilletsController{ 
-       
+class BilletsController{        
               
         //fonction qui affiche les 5 derniers billets
        public function list(){    
@@ -62,7 +61,7 @@ class BilletsController{
        /*fonction qui affiche la liste et le nombre de billets dans la page admistration, 
         *affiche les commentaires signalés */
        public function adminList(){   
-
+          
              $db = Connect::getPDO();               
              $manager = new BilletsManager($db);  
              $CommentManager = new CommentManager($db);
@@ -85,33 +84,29 @@ class BilletsController{
                      {
                             $pageCourante = 1;  
                                           
-                     }
-
+                     }                  
               $pageEntree = ($pageCourante-1) * $billetsPage;          
               $billetList = $manager->getList($pageEntree, $billetsPage);
 
-             include('Librairies/View/AdminView.php');           
-       }              
-       
+              include ('Librairies/View/AdminView.php');           
+       }                  
        // fonction qui affiche un billet à modifier dans la page administration         
        public function adminChange(){ 
 
               $db = Connect::getPDO();  
-              $manager = new BilletsManager($db);
-              $CommentManager = new CommentManager($db); 
-
+              $manager = new BilletsManager($db);        
               $value = $_GET['modifierBillet'];                        
                       
                      if(preg_match("#[0-9]#" , $value)) 
                      {                                   
-                            $billet = $manager->getUnique($value);                                                                                                                               
-                                                                                                                              
-                           include('Librairies/View/AdminChange.php');                      
+                            $billet = $manager->getUnique($value);                                                                                            
+                            include ('Librairies/View/AdminChange.php'); 
+                            $this->adminList();                                                                                                  
                      }
                      else
                      {
-                            include('Librairies/View/Erreur404.php');                                    
-                     }                                                                                        
+                            require 'Librairies/View/Erreur404.php';                                    
+                     }                                                               
        } 
        /*fonction qui permet de valider un nouveau billet
         *ou modifier billet existant*/ 
@@ -147,10 +142,17 @@ class BilletsController{
        public function delete(){
 
               $db = Connect::getPDO();    
-              $manager = new BilletsManager($db); 
-
-              $manager->delete((int) $_GET['supprimerBillet']);                                                    
-              $this->adminList();               
+              $manager = new BilletsManager($db);
+                     if(isset($_POST["supprimer"]))
+                     {
+                            $billet = (int) $_POST['id'];                            
+                     }
+                     else
+                     {
+                            $billet = (int) $_GET['supprimerBillet'];                            
+                     }  
+              $manager->delete($billet);                                                                    
+              $this->adminList();  
        }           
 
 }       
