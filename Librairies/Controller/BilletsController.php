@@ -122,13 +122,13 @@ class BilletsController{
               $billet = new Billet(             
               [         
                      'titre' => $_POST['titre'],
-                     'contenu' => $_POST['contenu']
-              ]
+                     'contenu' => $_POST['contenu']                   
+              ]    
               );    
                      if(isset($_POST['id']))
                      {
                              $billet->setId($_POST['id']);
-                     }      
+                     }   
                      if($billet->isValid())
                      {                  
                              $manager->save($billet);
@@ -138,6 +138,7 @@ class BilletsController{
                      else
                      {
                              $erreurs = $billet->erreurs();
+                             include('Librairies/View/AdminChange.php');
                      } 
                             $this->adminList();
                               
