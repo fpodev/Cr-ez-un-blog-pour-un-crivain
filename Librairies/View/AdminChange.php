@@ -1,4 +1,7 @@
-<?php use App\Model\BilletsManager; 
+<?php 
+use App\Model\BilletsManager; 
+use App\Objet\Billet;
+
 $titre = 'administration'; 
 require 'Librairies/Template/Head.php';
 
@@ -9,10 +12,10 @@ require 'Librairies/Template/Head.php';
               <form action="index.php" method="post">
              <p>'
         ?>                                      
-               <?php if(isset($erreurs) && in_array(Billets::TITRE_INVALIDE, $erreurs)) echo 'Le titre est invalide.<br />'; ?>
+               <?php if(isset($erreurs) && in_array(Billet::TITRE_INVALIDE, $erreurs)) echo 'Le titre est invalide.<br />'; ?>
                 Titre : <input type="text" name="titre" value="<?php if (isset($billet)) echo $billet->titre(); ?>" /><br />
                 
-                <?php if (isset($erreurs) && in_array(Billets::CONTENU_INVALIDE, $erreurs)) echo 'Le contenu est invalide.<br />'; ?>
+                <?php if (isset($erreurs) && in_array(Billet::CONTENU_INVALIDE, $erreurs)) echo 'Le contenu est invalide.<br />'; ?>
                 Contenu :<br /><textarea id="formulaire" type="text" name="contenu"><?php if (isset($billet)) echo $billet->contenu(); ?></textarea><br />
         <?php
         if(isset($billet) && !$billet->isNew())
