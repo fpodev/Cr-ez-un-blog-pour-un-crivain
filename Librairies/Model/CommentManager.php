@@ -25,9 +25,9 @@ class CommentManager
     }    
     public function getList($id)
     {
-        $q = $this->db->prepare('SELECT id, id_billet, pseudo, mail, contenu, dateAjout, signaler FROM commentaires WHERE id_billet =:id ORDER BY id DESC');        
+        $q = $this->db->prepare('SELECT * FROM commentaires WHERE id_billet =:id ORDER BY id DESC');        
               
-        $q->bindValue(':id', (int) $id, PDO::PARAM_INT);
+        $q->bindValue(':id', $id, PDO::PARAM_INT);
         $q->execute();     
 
         $commentList = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Commentaires'); 
