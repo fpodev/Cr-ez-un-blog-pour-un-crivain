@@ -35,8 +35,7 @@ class Billet
     public function isNew()
     {
         return empty($this->id);
-    }  
-    
+    }   
     public function isValid()
     {
         return !(empty($this->titre) || empty($this->contenu));
@@ -61,7 +60,7 @@ class Billet
     {
         if (!is_string($contenu) || empty($contenu)) 
         {
-            $this->erreur[] = self::CONTENU_INVALIDE;
+            $this->erreurs[] = self::CONTENU_INVALIDE;
         } 
         else
         {
