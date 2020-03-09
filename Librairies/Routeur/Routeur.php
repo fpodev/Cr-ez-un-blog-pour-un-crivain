@@ -82,7 +82,7 @@ Class Routeur{
             elseif(isset($_GET['billetUnique']))
             {             
               $billetUnique = new Billetscontroller();
-              $billetUnique->unique();                               
+              $billetUnique->unique();                                  
             } 
             //commande l'ajout d'un commentaire    
             elseif(isset($_POST['envoyer']))
