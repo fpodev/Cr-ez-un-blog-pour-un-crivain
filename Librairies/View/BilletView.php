@@ -43,7 +43,7 @@ require 'Librairies/Template/Head.php';
          }
          echo '</div>';                      
         endforeach; 
-  }       
+ }       
 ?>
       <div class="commentForm">  
         <p> Ajouter un Commentaire</p>
