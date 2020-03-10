@@ -48,7 +48,7 @@ class BilletsManager
     {        
         $q = $this->db->prepare('SELECT * FROM billets WHERE id =:id');
 
-        $q->bindValue(':id', (int) $id, PDO::PARAM_INT);
+        $q->bindValue(':id', $id, PDO::PARAM_INT);
         $q->execute();   
         
         $q->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billet');
