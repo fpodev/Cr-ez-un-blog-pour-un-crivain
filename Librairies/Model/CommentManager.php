@@ -28,9 +28,13 @@ class CommentManager
         $q = $this->db->prepare('SELECT * FROM commentaires WHERE id_billet =:id ORDER BY id DESC');        
               
         $q->bindValue(':id', $id, PDO::PARAM_INT);
-        $q->execute();     
+        $q->execute(); 
+        
+        $q->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Commentaires'); 
 
-        $commentList = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Commentaires'); 
+        $commentList = $q->fetchAll(); 
+
+        $q->closeCursor();
 
         return $commentList; 
     }      
@@ -47,9 +51,13 @@ class CommentManager
         $q = $this->db->prepare('SELECT id, id_billet, pseudo, mail, contenu, dateAjout, signaler FROM commentaires WHERE signaler =:signaler ORDER BY id DESC');        
        
         $q->bindValue(':signaler','signaler');                   
-        $q->execute();     
+        $q->execute();
 
-        $signalList = $q->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Commentaires'); 
+        $q->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Commentaires');   
+
+        $signalList = $q->fetchAll(); 
+
+        $q->closeCursor();
 
         return $signalList; 
     }
