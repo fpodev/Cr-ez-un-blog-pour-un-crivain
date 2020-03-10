@@ -46,8 +46,5 @@ class LoginController{
                     echo 'Erreur confimation nouveau mot de pass'; 
                     include('Librairies/View/changePassView.php');
                 }
-           }
-    public function ChangePage(){
-                include ("Librairies/View/changePassView.php");
-           }
+           }    
 }            
