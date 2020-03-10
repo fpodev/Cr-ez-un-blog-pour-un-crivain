@@ -37,8 +37,7 @@ Class Routeur{
             //commande la page de changement du mot de passe 
             elseif(isset($_GET['changePass']))
             {
-              $connexion = new LoginController();
-              $connexion->changePage();
+              include ("Librairies/View/changePassView.php");
             }
             //commande le changement du mot de passe
             elseif(isset($_POST['changePass']))
