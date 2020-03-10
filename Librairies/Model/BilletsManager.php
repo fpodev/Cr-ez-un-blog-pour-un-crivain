@@ -28,14 +28,12 @@ class BilletsManager
     {     
         return $this->db->query('SELECT COUNT(*) FROM billets')->fetchColumn();                         
     }
-    public function getList($debut =-1 , $limite =-1) 
+    public function getList($debut, $limite) 
     {      
         $sql = 'SELECT * FROM billets ORDER BY id DESC';
+             
+        $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
        
-       if ($debut != -1 || $limite != -1)
-       {
-            $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
-       }
         $q = $this->db->query($sql);  
         
         $q->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'App\Objet\Billet');
