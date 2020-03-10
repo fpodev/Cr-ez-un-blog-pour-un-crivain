@@ -20,6 +20,8 @@ class LoginManager
         
         $resultat = $q->fetch();
 
+        $q->closeCursor();
+
         return $resultat;         
     }    
     public function nouveauPass($identifiant){
