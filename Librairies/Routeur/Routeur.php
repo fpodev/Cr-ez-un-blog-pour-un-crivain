@@ -8,6 +8,16 @@ require 'vendor/autoload.php';
 
 Class Routeur{
 
+      private $ctrlBillet;
+      private $ctrlLogin;
+      private $ctrComment;
+
+    public function __construct(){
+      $this->ctrlBillet = new BilletsController();
+      $this->ctrlLogin = new LoginController();
+      $this->ctrlComment = new CommentController();
+}
+
     public function router(){
         //-------------------partie administration---------------------
 
@@ -19,8 +29,7 @@ Class Routeur{
               //si une session existe ce connect directement
               if(!empty($_SESSION['admin']) && $_SESSION['admin'] === $_COOKIE)
               {
-                $vueAdmin = new Billetscontroller();
-                $vueAdmin->adminList();                     
+                $this->ctrlBillet->adminList();                                    
               }
               //si session non existante, detruit la session dans le cache et renvoie sur la page pour se connecter
               else{ 
@@ -31,8 +40,7 @@ Class Routeur{
             //commande la connexion à la page administation
             elseif(isset($_POST['connexion']))
             {
-              $connexion = new LoginController();
-              $connexion->connexion();
+              $this->ctrlLogin->connexion();              
             }
             //commande la page de changement du mot de passe 
             elseif(isset($_GET['changePass']))
@@ -41,71 +49,60 @@ Class Routeur{
             }
             //commande le changement du mot de passe
             elseif(isset($_POST['changePass']))
-            {                
-              $connexion = new LoginController();
-              $connexion->changePass();
+            {   
+              $this->ctrlLogin->changePass();                       
             }
             //commande l'affichage d'un billet à modifier
             elseif(isset($_GET['modifierBillet']))
-            {        
-              $modif = new Billetscontroller();
-              $modif->adminChange();                                                     
+            {     
+              $this->ctrlBillet->adminChange();                                                                      
             }
             //commande la suppression d'un billet 
             elseif(isset($_GET['supprimerBillet']) || isset($_POST['supprimer']))
             {
-              $delete = new Billetscontroller();
-              $delete->delete();               
+              $this->ctrlBillet->delete();                          
             }
             //commande l'ajout ou la modification d'un billet dans la bdd
             elseif(isset($_POST['postBillet']) || (isset($_POST['postModifier']))) 
             {
-              $billetAjout = new Billetscontroller();
-              $billetAjout->save();       
+              $this->ctrlBillet->save();                    
             } 
             //commande la validation d'un commentaire par l'administrateur
             elseif(isset($_GET['validerComment']))
             {
-              $valider = new CommentController();
-              $valider->validation();
+              $this->ctrlComment->validation();             
             }
             //commande la suppression d'un commentaire par l'administrateur
             elseif(isset($_GET['deleteComment']))
             {
-              $delete = new CommentController();
-              $delete->delete();
+              $this->ctrlComment->delete();              
             } 
         //------------fin partie administration----------
         //------------partie public---------------------- 
             //commmande l'affichage d'un billet
             elseif(isset($_GET['billetUnique']))
-            {             
-              $billetUnique = new Billetscontroller();
-              $billetUnique->unique();                                  
+            {      
+              $this->ctrlBillet->unique();                                                   
             } 
             //commande l'ajout d'un commentaire    
             elseif(isset($_POST['envoyer']))
             {  
-              $commentAjout = new CommentController();       
-              $commentAjout->save();  
+              $this->ctrlComment->save();               
             } 
             //commande le signalement d'un commentaire
             elseif(isset($_GET['signalComment']) && $_GET['idBillet'])
             {
-              $signal = new CommentController();
-              $signal->signaler();
+              $this->ctrlComment->signaler();              
             }    
             //commande la pagination
             elseif(isset($_GET['page'])) 
             {
-              $page = new Billetscontroller();
-              $page->list();
+              $this->ctrlBillet->list();              
             }         
             //commande l'affichage de la page d'accueil par défaut
             else 
             {           
-              $home = new Billetscontroller();
-              $home->list();
+              $this->ctrlBillet->list();
           }  
         
         }
