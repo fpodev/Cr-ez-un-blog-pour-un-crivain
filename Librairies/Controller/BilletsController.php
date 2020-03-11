@@ -6,15 +6,20 @@ use App\Objet\Connect;
 use App\Model\CommentManager;
 use App\Model\BilletsManager;
 
-class BilletsController{        
+class BilletsController{     
+           
+              private $mComment;
+              private $mBillet;             
+       
+       public function __construct() {
+              $db = Connect::getPDO();
+              $this->mComment = new CommentManager($db);
+              $this->mBillet = new BilletsManager($db);
+       }
               
         //fonction qui affiche les 5 derniers billets
        public function list(){   
-
-              $db = Connect::getPDO();            
-              $manager = new BilletsManager($db);
-
-              $nbBillets = $manager->count();              
+              $nbBillets = $this->mBillet->count();           
               $billetsPage = 5;
               $nbPages = ceil($nbBillets/$billetsPage); 
                      if(isset($_GET['page']))  
@@ -33,23 +38,17 @@ class BilletsController{
                      }
 
               $pageEntree = ($pageCourante-1) * $billetsPage;          
-              $billetsList = $manager->getList($pageEntree, $billetsPage);
+              $billetsList = $this->mBillet->getList($pageEntree, $billetsPage);
               
               include("Librairies/View/HomeView.php"); 
        }
        //fonction qui contrôle si $value est un nombre, si il existe dans la bdd, et affiche le billet.        
-       public function unique(){ 
-
-              $db = Connect::getPDO();    
-              $manager = new BilletsManager($db); 
-              $CommentManager = new CommentManager($db);   
-
-              $value = $_GET['billetUnique'];                                                                                    
-              $commentList = $CommentManager->getList($value);  
-
+       public function unique(){  
+              $value = $_GET['billetUnique']; 
+              $commentList = $this->mComment->getList($value);  
                      if(preg_match("#[0-9]#" , $value))
                      {
-                            $billet = $manager->getUnique($value);
+                            $billet = $this->mBillet->getUnique($value);
 
                             if(!empty($billet))                                  
                             {   
@@ -65,16 +64,12 @@ class BilletsController{
                             require 'Librairies/View/Erreur404.php';
                      }                                    
        }
+
        /*fonction qui affiche la liste et le nombre de billets dans la page admistration, 
         *affiche les commentaires signalés */
-       public function adminList(){   
-          
-             $db = Connect::getPDO();               
-             $manager = new BilletsManager($db);  
-             $CommentManager = new CommentManager($db);
-                       
-             $billetCount = $manager->count();                                             
-             $signalList = $CommentManager->getSignalList(); 
+       public function adminList(){                                             
+             $billetCount = $this->mBillet->count();                                             
+             $signalList = $this->mComment->getSignalList(); 
              $billetsPage = 10;
              $nbPages = ceil($billetCount/$billetsPage); 
 
@@ -93,20 +88,18 @@ class BilletsController{
                                           
                      }                  
               $pageEntree = ($pageCourante-1) * $billetsPage;          
-              $billetList = $manager->getList($pageEntree, $billetsPage);
+              $billetList = $this->mBillet->getList($pageEntree, $billetsPage);
 
               include ('Librairies/View/AdminView.php');           
-       }                  
+       }
+       
        // fonction qui affiche un billet à modifier dans la page administration         
-       public function adminChange(){ 
-
-              $db = Connect::getPDO();  
-              $manager = new BilletsManager($db);        
+       public function adminChange(){                    
               $value = $_GET['modifierBillet'];                        
                       
                      if(preg_match("#[0-9]#" , $value)) 
                      {                                   
-                            $billet = $manager->getUnique($value);                                                                                            
+                            $billet = $this->mBillet->getUnique($value);                                                                                            
                             include ('Librairies/View/AdminChange.php'); 
                             $this->adminList();                                                                                                  
                      }
@@ -115,12 +108,10 @@ class BilletsController{
                             require 'Librairies/View/Erreur404.php';                                    
                      }                                                               
        } 
+
        /*fonction qui permet de valider un nouveau billet
         *ou modifier billet existant*/ 
-       public function save(){  
-
-              $db = Connect::getPDO(); 
-              $manager = new BilletsManager($db);
+       public function save(){                             
               $billet = new Billet(             
               [         
                      'titre' => $_POST['titre'],
@@ -133,7 +124,7 @@ class BilletsController{
                      }   
                      if($billet->isValid())
                      {         
-                            $manager->save($billet);                                                
+                            $this->mBillet->save($billet);                                                
                      }
                      else
                      {
@@ -143,11 +134,9 @@ class BilletsController{
                             $this->adminList();
                               
        } 
+
        //fonction pour supprimer un billet    
        public function delete(){
-
-              $db = Connect::getPDO();    
-              $manager = new BilletsManager($db);
                      if(isset($_POST["supprimer"]))
                      {
                             $billet = (int) $_POST['id'];                            
@@ -156,7 +145,7 @@ class BilletsController{
                      {
                             $billet = (int) $_GET['supprimerBillet'];                            
                      }  
-              $manager->delete($billet);                                                                    
+              $this->mBillet->delete($billet);                                                                    
               $this->adminList();  
        }           
 

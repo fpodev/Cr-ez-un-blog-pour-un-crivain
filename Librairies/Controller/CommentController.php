@@ -8,9 +8,14 @@ use App\Controller\BilletsController;
 
 class CommentController{
 
-    public function save(){    
-        $db = Connect::getPDO(); 
-        $manager = new CommentManager($db);
+        private $mComment;        
+
+    public function __construct() {
+        $db = Connect::getPDO();
+        $this->mComment = new CommentManager($db);       
+    }
+
+    public function save(){           
         $commentaires = new Commentaires(             
         [                          
             'pseudo' => $_POST['pseudo'],
@@ -21,7 +26,7 @@ class CommentController{
         );                         
           if($commentaires->isValid())
           {     
-            $manager->save($commentaires) ;                               
+            $this->mComment->save($commentaires) ;                               
           }
           else  
           {
@@ -33,30 +38,21 @@ class CommentController{
         header("Location: index.php?billetUnique=$billet");              
     }
 
-    public function signaler(){
-        $db = Connect::getPDO(); 
-        $manager = new CommentManager($db); 
-
-        $signal = $manager->signaler((int)$_GET['signalComment']);         
+    public function signaler(){       
+        $signal = $this->mComment->signaler((int)$_GET['signalComment']);         
         $billet = (int)$_GET['idBillet'];
 
         header("Location: index.php?billetUnique=$billet");
     } 
 
-    public function validation(){
-        $db = Connect::getPDO();
-        $manager = new CommentManager($db);
-        $validation = $manager->validation((int)$_GET['validerComment']); 
+    public function validation(){        
+        $validation = $this->mComment->validation((int)$_GET['validerComment']); 
         $adminPage= new BilletsController();
         $adminPage->adminList();
-
     }      
-    public function delete(){
 
-        $db = Connect::getPDO();
-        $manager = new CommentManager($db);
-
-        $delete = $manager->delete((int)$_GET['deleteComment']);  
+    public function delete(){              
+        $this->mComment->delete((int)$_GET['deleteComment']);  
         
         header("Location: index.php?connexion");
     }
