@@ -1,6 +1,6 @@
 # Cr-ez-un-blog-pour-un-crivain
 
-Projet réalisé dans le cadre de la formation dévelloppeur web junior chez openclassrooms.
+Projet réalisé dans le cadre de la formation développeur web junior chez openclassrooms.
 Compétences évaluées:
 -Organiser le code en langage PHP
 -Soutenir et argumenter ses propositions
