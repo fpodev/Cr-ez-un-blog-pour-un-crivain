@@ -1,4 +1,4 @@
-# Cr-ez-un-blog-pour-un-crivain
+#Creation blog
 
 Projet réalisé dans le cadre de la formation développeur web junior chez openclassrooms.
 Compétences évaluées:
